@@ -110,13 +110,6 @@ export default function Login({ status, canResetPassword }) {
                                         className="mt-2"
                                     />{" "}
                                 </div>
-                                <Link
-                                    href={route("register")}
-                                    className="text-underline"
-                                >
-                                    Create New Account
-                                </Link>
-
                                 <PrimaryButton disabled={processing}>
                                     Log in
                                 </PrimaryButton>

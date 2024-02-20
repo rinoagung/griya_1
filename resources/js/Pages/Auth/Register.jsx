@@ -1,28 +1,20 @@
-import { useEffect } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Register() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         id_pegawai: "",
         password: "",
         password_confirmation: "",
     });
 
-    useEffect(() => {
-        return () => {
-            reset("password", "password_confirmation");
-        };
-    }, []);
-
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("register"));
+        post(route("addsales"));
     };
 
     return (
@@ -104,12 +96,6 @@ export default function Register() {
                                         className="mt-2"
                                     />{" "}
                                 </div>
-                                <Link
-                                    href={route("login")}
-                                    className="text-underline"
-                                >
-                                    Already registered?
-                                </Link>
 
                                 <PrimaryButton disabled={processing}>
                                     Register

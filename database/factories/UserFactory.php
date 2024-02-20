@@ -24,11 +24,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'id_pegawai' => 'admin_rino',
+            'password' => '$2y$12$hsmjknjb3O86hoMycpncJeb6ylMWR1vA998Y4CMkZZoxeEes1sTwq',
+            'role' => 'admin',
         ];
     }
 
