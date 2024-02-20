@@ -113,6 +113,10 @@ export default function Login({ status, canResetPassword }) {
                                 <PrimaryButton disabled={processing}>
                                     Log in
                                 </PrimaryButton>
+                                <div id="emailHelp" className="form-text">
+                                    Sistem ini otomatis mengarahkan sesuai role
+                                    di setiap id karyawan yang terdaftar.
+                                </div>
                             </form>
                         </main>
                     </div>

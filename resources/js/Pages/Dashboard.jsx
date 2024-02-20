@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import DangerLink from "@/Components/DangerLink";
 
 export default function Dashboard({ auth }) {
     return (
@@ -54,8 +54,11 @@ export default function Dashboard({ auth }) {
                 ) : (
                     <>
                         <div
-                            className="card text-bg-info mb-3"
-                            style={{ maxWidth: "18rem" }}
+                            className="card mb-3"
+                            style={{
+                                maxWidth: "18rem",
+                                backgroundColor: "#EBF400",
+                            }}
                         >
                             <a
                                 href={route("profile.edit")}
@@ -74,7 +77,7 @@ export default function Dashboard({ auth }) {
                             className="card mb-3"
                             style={{
                                 maxWidth: "18rem",
-                                backgroundColor: "limegreen",
+                                backgroundColor: "#836FFF",
                             }}
                         >
                             <a
@@ -102,13 +105,15 @@ export default function Dashboard({ auth }) {
                 </div>
 
                 <div className="mt-3 space-y-1">
-                    <ResponsiveNavLink
+                    <DangerLink
                         method="post"
                         href={route("logout")}
+                        style={{ maxWidth: "7rem" }}
+                        className="p-1"
                         as="button"
                     >
                         Log Out
-                    </ResponsiveNavLink>
+                    </DangerLink>
                 </div>
             </div>
         </AuthenticatedLayout>

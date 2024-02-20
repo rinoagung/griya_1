@@ -78,10 +78,20 @@ export default function Paket({ auth }) {
                                 />{" "}
                             </div>
 
-                            <PrimaryButton disabled={processing}>
+                            <PrimaryButton
+                                disabled={processing}
+                                className="mb-3"
+                            >
                                 Tambah paket
                             </PrimaryButton>
                         </form>
+
+                        <Link
+                            href={route("dashboard")}
+                            className="text-underline"
+                        >
+                            Back
+                        </Link>
                     </div>
                 </div>
             </div>
