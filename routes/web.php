@@ -40,7 +40,7 @@ Route::middleware(['admin', 'auth', 'verified'])->group(
 
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/customer', [CustomerController::class, 'create'])->name('customer');
+    // Route::get('/customer/{id}', [CustomerController::class, 'index'])->name('customer');
     // Route::post('/customer', [CustomerController::class, 'store']);
     // Route::get('/customer/manage', [CustomerController::class, 'index'])->name('customer.manage');
     // Route::get('/customer/edit/{id}', [CustomerController::class, 'show'])->name('customer.edit');

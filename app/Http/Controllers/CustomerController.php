@@ -37,7 +37,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         $validateData = $request->validate([
-            'id_paket' => 'max:64',
+            'id_paket' => 'required|max:64',
             'nama' => 'required|max:64',
             'no_telp' => 'max:32|starts_with:62',
             'alamat' => 'max:255',
@@ -53,7 +53,11 @@ class CustomerController extends Controller
         }
 
         Customer::create($validateData);
-        return back();
+
+        return Inertia::render('Sales/AddCustomers', [
+            // 'errors' => session()->get('errors') ? session('errors')->all() : (object) [],
+            "paket" => Paket::all()
+        ])->with("success", "Customer has been added!");
     }
 
     /**
@@ -61,8 +65,11 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return Inertia::render('Sales/Customers', [
+        $customer->load('paket');
+
+        return Inertia::render('Sales/ShowCustomer', [
             "customer" => $customer,
+            // "paket" => Paket::where("id", $customer['id_paket'])
         ]);
     }
 
@@ -84,7 +91,7 @@ class CustomerController extends Controller
     {
 
         $validateData = $request->validate([
-            'id_paket' => 'max:64',
+            'id_paket' => 'required|max:64',
             'nama' => 'max:64',
             'no_telp' => 'max:32|starts_with:62',
             'alamat' => 'max:255',
@@ -92,8 +99,6 @@ class CustomerController extends Controller
 
 
         if ($request->file("foto_rumah")) {
-            var_dump($validateData['nama']);
-            die;
             $request->validate([
                 'foto_rumah' => 'image|max:2048',
             ]);
@@ -117,10 +122,10 @@ class CustomerController extends Controller
             ->update($validateData);
 
         return Inertia::render('Sales/EditCustomers', [
-            'errors' => session()->get('errors') ? session('errors')->all() : (object) [],
+            // 'errors' => session()->get('errors') ? session('errors')->all() : (object) [],
             "customer" => $customer,
             "paket" => Paket::all()
-        ]);
+        ])->with("success", "Customer has been updated!");
     }
 
     /**
@@ -135,6 +140,9 @@ class CustomerController extends Controller
             Storage::delete($customer->foto_rumah);
         }
         $customer::destroy($customer->id);
-        return back();
+
+        return Inertia::render('Sales/ManageCustomers', [
+            "customers" => Customer::latest()->get()
+        ])->with("success", "Customer has been deleted!");
     }
 }

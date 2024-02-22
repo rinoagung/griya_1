@@ -10,4 +10,9 @@ class Customer extends Model
     protected $guarded = ["id"];
 
     use HasFactory;
+
+    public function paket()
+    {
+        return $this->belongsTo(Paket::class, "id_paket");
+    }
 }

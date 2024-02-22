@@ -5,12 +5,12 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 
-export default function Customer({ auth, customers }) {
+export default function Customer({ auth, customers, success }) {
     const { data, setData, post, errors, processing } = useForm({
         id: "",
     });
 
-    const deleteCustomer = (id) => {
+    const deleteCustomer = (e, id) => {
         // return alert(data.id);
         router.delete(`/customer/${id}`);
     };
@@ -28,6 +28,14 @@ export default function Customer({ auth, customers }) {
             <div className="container">
                 <div className="row justify-content-center align-items-center vh-100">
                     <div className="table-responsive col-lg-11">
+                        {success && (
+                            <div
+                                className="alert alert-success alert-dismissible m-auto fade show col-lg-7"
+                                role="alert"
+                            >
+                                {success}
+                            </div>
+                        )}
                         <table className="table table-striped table-sm mt-3">
                             <thead>
                                 <tr>
@@ -45,7 +53,7 @@ export default function Customer({ auth, customers }) {
                                         <td>+{c.no_telp}</td>
                                         <td>
                                             <a
-                                                href={`/customer/show/${c.id}`}
+                                                href={`/customer/${c.id}`}
                                                 className="badge bg-transparent shadow-sm"
                                             >
                                                 <svg
@@ -75,9 +83,15 @@ export default function Customer({ auth, customers }) {
                                             </a>
                                             <button
                                                 className="badge bg-transparent border-0 shadow-sm d-inline"
-                                                onClick={() =>
-                                                    deleteCustomer(c.id)
-                                                }
+                                                onClick={(e) => {
+                                                    if (
+                                                        window.confirm(
+                                                            "Anda yakin ingin menghapus data ini?"
+                                                        )
+                                                    ) {
+                                                        deleteCustomer(e, c.id);
+                                                    }
+                                                }}
                                             >
                                                 <svg
                                                     width="16"

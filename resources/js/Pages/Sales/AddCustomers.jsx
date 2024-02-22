@@ -5,8 +5,8 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 
-export default function Customer({ auth, paket }) {
-    const { data, setData, post, errors, processing } = useForm({
+export default function Customer({ auth, paket, errors, success }) {
+    const { data, setData, post, processing } = useForm({
         id_paket: "",
         nama: "",
         no_telp: "62",
@@ -31,9 +31,17 @@ export default function Customer({ auth, paket }) {
             }
         >
             <Head title="Customer" />
-            <div className="container">
+            <div className="container my-5">
                 <div className="row justify-content-center align-items-center vh-100">
                     <div className="col-lg-5">
+                        {success && (
+                            <div
+                                className="alert alert-success alert-dismissible fade m-auto show col-lg-7"
+                                role="alert"
+                            >
+                                {success}
+                            </div>
+                        )}
                         <form onSubmit={submit}>
                             <div className="mb-3">
                                 <label

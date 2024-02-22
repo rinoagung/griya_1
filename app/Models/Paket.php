@@ -10,4 +10,10 @@ class Paket extends Model
     protected $guarded = ["id"];
 
     use HasFactory;
+
+
+    public function customer()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }

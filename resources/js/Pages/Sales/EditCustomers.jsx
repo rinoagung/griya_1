@@ -6,7 +6,13 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { useState } from "react";
 
-export default function EditCustomers({ customer, auth, paket, errors }) {
+export default function EditCustomers({
+    customer,
+    auth,
+    paket,
+    errors,
+    success,
+}) {
     const [previewRumah, setPreviewRumah] = useState(null);
     const [previewKTP, setPreviewKTP] = useState(null);
 
@@ -38,9 +44,17 @@ export default function EditCustomers({ customer, auth, paket, errors }) {
             }
         >
             <Head title="Customer" />
-            <div className="container">
+            <div className="container mt-5">
                 <div className="row justify-content-center align-items-center vh-100">
                     <div className="col-lg-5">
+                        {success && (
+                            <div
+                                className="alert alert-success alert-dismissible fade show col-lg-7"
+                                role="alert"
+                            >
+                                {success}
+                            </div>
+                        )}
                         <form onSubmit={submit}>
                             <div className="mb-3">
                                 <label
