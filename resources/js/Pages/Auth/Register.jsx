@@ -100,6 +100,13 @@ export default function Register() {
                                 <PrimaryButton disabled={processing}>
                                     Register
                                 </PrimaryButton>
+
+                                <Link
+                                    href={route("dashboard")}
+                                    className="text-underline"
+                                >
+                                    Back
+                                </Link>
                             </form>
                         </main>
                     </div>

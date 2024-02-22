@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import DangerLink from "@/Components/DangerLink";
 
 export default function Dashboard({ auth }) {
@@ -61,13 +61,13 @@ export default function Dashboard({ auth }) {
                             }}
                         >
                             <a
-                                href={route("profile.edit")}
+                                href="/customer/create"
                                 className="text-decoration-none text-dark"
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
                                     <h5 className="card-title">
-                                        Customers Management
+                                        Tambah Pelanggan
                                     </h5>
                                 </div>
                             </a>
@@ -81,12 +81,14 @@ export default function Dashboard({ auth }) {
                             }}
                         >
                             <a
-                                href={route("paket")}
+                                href="/customer"
                                 className="text-decoration-none text-dark"
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
-                                    <h5 className="card-title">Buat Paket</h5>
+                                    <h5 className="card-title">
+                                        Kelola Pelanggan
+                                    </h5>
                                 </div>
                             </a>
                         </div>

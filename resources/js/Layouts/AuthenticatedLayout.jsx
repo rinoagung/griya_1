@@ -9,6 +9,11 @@ export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+    const elements = document.querySelectorAll("[data-page]");
+    elements.forEach((element) => {
+        element.setAttribute("data-page", "");
+    });
+
     return (
         <div className="min-h-screen bg-gray-100">
             {header && (

@@ -24,9 +24,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_pegawai' => 'admin_rino',
-            'password' => '$2y$12$hsmjknjb3O86hoMycpncJeb6ylMWR1vA998Y4CMkZZoxeEes1sTwq',
-            'role' => 'admin',
+            'id_pegawai' => '1',
+            'password' => '1',
+            'role' => '1',
         ];
     }
 
