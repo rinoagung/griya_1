@@ -28,4 +28,6 @@ Route::middleware('admin')->group(function () {
         ->name('addsales');
 
     Route::post('addsales', [RegisteredUserController::class, 'store']);
+    Route::delete('/sales/{user}', [RegisteredUserController::class, 'destroy'])->name('sales.destroy');
+    Route::get('/sales/{user}', [RegisteredUserController::class, 'create'])->name('sales.create');
 });

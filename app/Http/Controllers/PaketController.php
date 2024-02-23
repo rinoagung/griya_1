@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Paket;
 use App\Http\Requests\StorePaketRequest;
 use App\Http\Requests\UpdatePaketRequest;
+use App\Models\Customer;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -15,7 +16,9 @@ class PaketController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('Admin/Paket');
+        return Inertia::render('Admin/Paket', [
+            "paket" => Paket::get()
+        ]);
     }
 
     /**
@@ -35,10 +38,11 @@ class PaketController extends Controller
             "harga" => "required|max:255",
         ]);
 
-        session()->flash('success', 'New Category has been added!');
-
         Paket::create($validate);
-        return back();
+
+        return Inertia::render('Admin/Paket', [
+            "paket" => Paket::get()
+        ])->with("success", "New paket has been added!");
     }
 
     /**
@@ -46,7 +50,9 @@ class PaketController extends Controller
      */
     public function show(Paket $paket)
     {
-        //
+        return Inertia::render('Admin/Paket', [
+            "paket" => Paket::get()
+        ]);
     }
 
     /**
@@ -54,7 +60,9 @@ class PaketController extends Controller
      */
     public function edit(Paket $paket)
     {
-        //
+        return Inertia::render('Admin/EditPaket', [
+            "paket" => $paket,
+        ]);
     }
 
     /**
@@ -62,7 +70,17 @@ class PaketController extends Controller
      */
     public function update(UpdatePaketRequest $request, Paket $paket)
     {
-        //
+        $validate = $request->validate([
+            'nama_paket' => "required|max:255",
+            "harga" => "required|max:255",
+        ]);
+
+        Paket::where('id', $paket->id)
+            ->update($validate);
+
+        return Inertia::render('Admin/Paket', [
+            "paket" => Paket::get()
+        ])->with("success", "Paket has been updated!");
     }
 
     /**
@@ -70,6 +88,24 @@ class PaketController extends Controller
      */
     public function destroy(Paket $paket)
     {
-        //
+
+        $paket::destroy($paket->id);
+
+        return Inertia::render('Admin/Paket', [
+            "paket" => Paket::get()
+        ])->with("success", "Paket has been deleted!");
+    }
+
+    public function viewPDF()
+    {
+        $customer = Customer::with('paket')->get();
+        $totalHarga = $customer->sum(function ($c) {
+            return $c->paket->harga;
+        });
+
+        return Inertia::render('Admin/ViewPDF', [
+            "customer" => $customer,
+            "totalHarga" => $totalHarga
+        ]);
     }
 }

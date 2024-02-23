@@ -13,12 +13,12 @@ export default function Dashboard({ auth }) {
             }
         >
             <Head title="Dashboard" />
-            <div className="container">
+            <div className="container d-flex justify-content-center">
                 {auth.user.role === "admin" ? (
                     <>
                         <div
-                            className="card text-bg-info mb-3"
-                            style={{ maxWidth: "18rem" }}
+                            className="card mx-2 text-bg-info mb-3"
+                            style={{ width: "14rem" }}
                         >
                             <a
                                 href={route("addsales")}
@@ -34,14 +34,14 @@ export default function Dashboard({ auth }) {
                         </div>
 
                         <div
-                            className="card mb-3"
+                            className="card mx-2 mb-3"
                             style={{
-                                maxWidth: "18rem",
+                                width: "14rem",
                                 backgroundColor: "limegreen",
                             }}
                         >
                             <a
-                                href={route("paket")}
+                                href="/paket"
                                 className="text-decoration-none text-dark"
                             >
                                 <div className="card-header">Header</div>
@@ -50,13 +50,31 @@ export default function Dashboard({ auth }) {
                                 </div>
                             </a>
                         </div>
+
+                        <div
+                            className="card mx-2 mb-3"
+                            style={{
+                                width: "14rem",
+                                backgroundColor: "#FBA834",
+                            }}
+                        >
+                            <a
+                                href="/viewpdf"
+                                className="text-decoration-none text-dark"
+                            >
+                                <div className="card-header">Header</div>
+                                <div className="card-body">
+                                    <h5 className="card-title">Export PDF</h5>
+                                </div>
+                            </a>
+                        </div>
                     </>
                 ) : (
                     <>
                         <div
-                            className="card mb-3"
+                            className="card mx-2 mb-3"
                             style={{
-                                maxWidth: "18rem",
+                                width: "14rem",
                                 backgroundColor: "#EBF400",
                             }}
                         >
@@ -74,9 +92,9 @@ export default function Dashboard({ auth }) {
                         </div>
 
                         <div
-                            className="card mb-3"
+                            className="card mx-2 mb-3"
                             style={{
-                                maxWidth: "18rem",
+                                width: "14rem",
                                 backgroundColor: "#836FFF",
                             }}
                         >
@@ -94,14 +112,19 @@ export default function Dashboard({ auth }) {
                         </div>
                     </>
                 )}
-
+            </div>
+            <div className="container">
                 <div className="py-12">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="p-6 text-gray-900">
-                                ID Pegawai {auth.user.id_pegawai}
+                                <strong>ID Pegawai: </strong>
+                                {auth.user.id_pegawai}
                             </div>
-                            <div>Role: {auth.user.role}</div>
+                            <div>
+                                <strong>Role: </strong>
+                                {auth.user.role}
+                            </div>
                         </div>
                     </div>
                 </div>

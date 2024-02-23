@@ -21,7 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register', [
+            "sales" => User::where("role", "sales")->get()
+        ]);
     }
 
     /**
@@ -29,7 +31,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'id_pegawai' => 'required|max:255|unique:' . User::class,
@@ -44,6 +46,14 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        return Inertia::render('Auth/Register', ["sales" => User::where("role", "sales")->get()])->with("success", "New sales account has been added!");
+    }
+
+
+    public function destroy(User $user)
+    {
+        $user::destroy($user->id);
+
+        return Inertia::render('Auth/Register', ["sales" => User::where("role", "sales")->get()])->with("success", "Sales account has been deleted!");
     }
 }

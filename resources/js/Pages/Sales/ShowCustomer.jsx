@@ -5,7 +5,7 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 
-export default function Customer({ auth, customer, paket }) {
+export default function Customer({ auth, customer }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
