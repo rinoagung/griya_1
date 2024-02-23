@@ -156,7 +156,10 @@ export default function EditCustomers({
                             </div>
                             <div className="mb-3">
                                 <img
-                                    src={`/storage/${data.old_foto_rumah}`}
+                                    src={
+                                        previewRumah ||
+                                        `/storage/${data.old_foto_rumah}`
+                                    }
                                     className="foto-rumah-preview rounded mx-auto d-block"
                                     alt="...Foto Rumah"
                                     style={{ maxHeight: "100px" }}
@@ -189,7 +192,10 @@ export default function EditCustomers({
                             </div>
                             <div className="mb-3">
                                 <img
-                                    src={`/storage/${data.old_foto_ktp}`}
+                                    src={
+                                        previewKTP ||
+                                        `/storage/${data.old_foto_ktp}`
+                                    }
                                     className="foto-ktp-preview rounded mx-auto d-block"
                                     alt="...Foto KTP"
                                     style={{ maxHeight: "100px" }}
