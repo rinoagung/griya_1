@@ -4,6 +4,7 @@ import { Head, Link, useForm, router } from "@inertiajs/react";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
+import { useState } from "react";
 
 export default function Customer({ auth, paket, errors, success }) {
     const { data, setData, post, processing } = useForm({
@@ -14,6 +15,9 @@ export default function Customer({ auth, paket, errors, success }) {
         foto_rumah: undefined,
         foto_ktp: undefined,
     });
+
+    const [previewRumah, setPreviewRumah] = useState(null);
+    const [previewKTP, setPreviewKTP] = useState(null);
 
     const submit = (e) => {
         e.preventDefault();
@@ -32,7 +36,7 @@ export default function Customer({ auth, paket, errors, success }) {
         >
             <Head title="Customer" />
             <div className="container my-5">
-                <div className="row justify-content-center align-items-center vh-100">
+                <div className="row justify-content-center align-items-center">
                     <div className="col-lg-5">
                         {success && (
                             <div
@@ -143,6 +147,14 @@ export default function Customer({ auth, paket, errors, success }) {
                                 />{" "}
                             </div>
                             <div className="mb-3">
+                                {previewRumah && (
+                                    <img
+                                        src={previewRumah}
+                                        className="foto-rumah-preview rounded mx-auto d-block"
+                                        alt="...Foto Rumah"
+                                        style={{ maxHeight: "100px" }}
+                                    />
+                                )}
                                 <label
                                     htmlFor="exampleInputEmail1"
                                     className="form-label"
@@ -154,9 +166,15 @@ export default function Customer({ auth, paket, errors, success }) {
                                     type="file"
                                     name="foto_rumah"
                                     className="form-control rounded-top"
-                                    onChange={(e) =>
-                                        setData("foto_rumah", e.target.files[0])
-                                    }
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        setData("foto_rumah", file);
+                                        if (file) {
+                                            const imageUrl =
+                                                URL.createObjectURL(file);
+                                            setPreviewRumah(imageUrl);
+                                        }
+                                    }}
                                     required
                                 />
                                 <InputError
@@ -165,6 +183,14 @@ export default function Customer({ auth, paket, errors, success }) {
                                 />{" "}
                             </div>
                             <div className="mb-3">
+                                {previewKTP && (
+                                    <img
+                                        src={previewKTP}
+                                        className="foto-rumah-preview rounded mx-auto d-block"
+                                        alt="...Foto KTP"
+                                        style={{ maxHeight: "100px" }}
+                                    />
+                                )}
                                 <label
                                     htmlFor="exampleInputEmail1"
                                     className="form-label"
@@ -176,9 +202,16 @@ export default function Customer({ auth, paket, errors, success }) {
                                     type="file"
                                     name="foto_ktp"
                                     className="form-control rounded-top"
-                                    onChange={(e) =>
-                                        setData("foto_ktp", e.target.files[0])
-                                    }
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+
+                                        setData("foto_ktp", file);
+                                        if (file) {
+                                            const imageUrl =
+                                                URL.createObjectURL(file);
+                                            setPreviewKTP(imageUrl);
+                                        }
+                                    }}
                                     required
                                 />
                                 <InputError
@@ -194,13 +227,6 @@ export default function Customer({ auth, paket, errors, success }) {
                                 Tambah customer
                             </PrimaryButton>
                         </form>
-
-                        <Link
-                            href={route("dashboard")}
-                            className="text-underline"
-                        >
-                            Back
-                        </Link>
                     </div>
                 </div>
             </div>

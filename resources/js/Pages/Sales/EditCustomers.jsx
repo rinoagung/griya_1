@@ -45,7 +45,7 @@ export default function EditCustomers({
         >
             <Head title="Customer" />
             <div className="container mt-5">
-                <div className="row justify-content-center align-items-center vh-100">
+                <div className="row justify-content-center align-items-center">
                     <div className="col-lg-5">
                         {success && (
                             <div
@@ -235,10 +235,6 @@ export default function EditCustomers({
                                 Update Data
                             </PrimaryButton>
                         </form>
-
-                        <Link href="/customer" className="text-underline pb-5">
-                            Back
-                        </Link>
                     </div>
                 </div>
             </div>

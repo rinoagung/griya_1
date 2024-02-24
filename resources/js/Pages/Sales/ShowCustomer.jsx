@@ -17,7 +17,7 @@ export default function Customer({ auth, customer }) {
         >
             <Head title="Customer" />
             <div className="container my-5">
-                <div className="row justify-content-center align-items-center vh-100">
+                <div className="row justify-content-center align-items-center ">
                     <div className="col-lg-5">
                         <div
                             className="card mb-3"
@@ -82,12 +82,6 @@ export default function Customer({ auth, customer }) {
                                 </div>
                             </div>
                         </div>
-                        <Link
-                            href={route("dashboard")}
-                            className="text-underline"
-                        >
-                            Back
-                        </Link>
                     </div>
                 </div>
             </div>

@@ -3,10 +3,6 @@ import { Head, Link, useForm, router } from "@inertiajs/react";
 import JsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-
 export default function viewPDF({ auth, customer, totalHarga }) {
     const generatePDF = () => {
         const report = document.querySelector("#report");
@@ -32,9 +28,6 @@ export default function viewPDF({ auth, customer, totalHarga }) {
             <Head title="Customer" />
 
             <div className="container my-5">
-                <Link href="/dashboard" className="text-underline pb-4 d-block">
-                    Back
-                </Link>
                 <button
                     onClick={generatePDF}
                     type="button"
@@ -43,8 +36,8 @@ export default function viewPDF({ auth, customer, totalHarga }) {
                     Export PDF
                 </button>
                 <div id="report" className="row justify-content-center pb-5">
-                    <h3 className="text-center my-5">Data Customers</h3>
-                    <h5 className="text-center my-5">
+                    <h3 className="text-center my-3">Data Customers</h3>
+                    <h5 className="text-center mb-5">
                         Total Pendapatan: RP{totalHarga}
                     </h5>
                     {customer.map((c, index) => (

@@ -1,24 +1,35 @@
-import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link } from "@inertiajs/react";
-
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     const elements = document.querySelectorAll("[data-page]");
     elements.forEach((element) => {
         element.setAttribute("data-page", "");
     });
 
+    const isiLink = window.location.pathname.split("/");
+
     return (
         <div>
             {header && (
-                <header className="bg-white shadow">
+                <header className="bg-white shadow d-flex justify-content-between">
                     <div className="p-4">{header}</div>
+
+                    {isiLink[1] != "dashboard" && (
+                        <div>
+                            <a
+                                href={
+                                    isiLink[2] == undefined
+                                        ? "/dashboard"
+                                        : isiLink[2] == "create"
+                                        ? "/dashboard"
+                                        : `/${isiLink[1]}`
+                                }
+                                // href="javascript:history.back()"
+                                style={{ width: "fit-content" }}
+                                className="btn btn-primary m-4 text-decoration-none"
+                            >
+                                Kembali
+                            </a>
+                        </div>
+                    )}
                 </header>
             )}
 

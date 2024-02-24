@@ -28,7 +28,7 @@ export default function EditPaket({ auth, paket, errors, success }) {
         >
             <Head title="Paket" />
             <div className="container">
-                <div className="row justify-content-center align-items-center vh-100">
+                <div className="row justify-content-center align-items-center">
                     <div className="col-lg-5">
                         {success && (
                             <div
@@ -93,13 +93,6 @@ export default function EditPaket({ auth, paket, errors, success }) {
                                 Update paket
                             </PrimaryButton>
                         </form>
-
-                        <Link
-                            href={route("dashboard")}
-                            className="text-underline"
-                        >
-                            Back
-                        </Link>
                     </div>
                 </div>
             </div>

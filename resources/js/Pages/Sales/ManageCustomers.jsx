@@ -26,7 +26,7 @@ export default function Customer({ auth, customers, success }) {
         >
             <Head title="Customer" />
             <div className="container">
-                <div className="row justify-content-center align-items-center vh-100">
+                <div className="row justify-content-center align-items-center">
                     <div className="table-responsive col-lg-11">
                         {success && (
                             <div
@@ -109,9 +109,6 @@ export default function Customer({ auth, customers, success }) {
                                 ))}
                             </tbody>
                         </table>
-                        <Link href="/dashboard" className="text-underline">
-                            Back
-                        </Link>
                     </div>
                 </div>
             </div>
